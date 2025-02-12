@@ -2,8 +2,10 @@ import {useState} from "react";
 import imageClass from "../../assets/pexels-didsss-2675061.jpg";
 import {toast} from "react-toastify";
 import axios from "axios";
+import { useNavigate } from "react-router";
 const Login = () => {
     const [email, setEmail] = useState("james2@gmail.com");
+    const navigate = useNavigate()
     const [password, setPassword] = useState("Password1$");
     // const fullName = "ELvis Udoka";
     const url = "https://movie-app-ch5.onrender.com/api/user/log-in";
@@ -15,10 +17,13 @@ const Login = () => {
         try {
             const response = await axios.post(url, {email, password});
             console.log(response);
-            localStorage.setItem(
-                "userData",
-                JSON.stringify(response?.data?.data)
-            );
+            if(response?.status === 200){
+                localStorage.setItem(
+                    "userData",
+                    JSON.stringify(response?.data?.data)
+                );
+                navigate('/dashboard')
+            }
             toast.success(response?.data?.message);
         } catch (err) {
             console.log(err);

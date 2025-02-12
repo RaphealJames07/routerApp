@@ -1,5 +1,7 @@
 import {FaShoppingCart, FaUser} from "react-icons/fa";
 import {NavLink, useNavigate} from "react-router";
+import { EgbujContext } from "../global/ContextProvider";
+import { useContext } from "react";
 
 const Header = () => {
     const navigate = useNavigate();
@@ -11,7 +13,8 @@ const Header = () => {
     };
 
     const data = ["nike", "adidas", "new-balance", "yeezy", "puma", "asics"];
-
+// const count = 1
+const {samuel} = useContext(EgbujContext)
     return (
         <div className="w-full h-16 bg-sky-400 flex items-center justify-between px-14">
             <div
@@ -55,7 +58,10 @@ const Header = () => {
                     className="cursor-pointer"
                     onClick={() => navigate("/dashboard")}
                 />
-                <FaShoppingCart size={24} className="cursor-pointer" />
+                <span>
+                    <FaShoppingCart size={24} className="cursor-pointer" />
+                    {samuel}
+                </span>
             </div>
         </div>
     );

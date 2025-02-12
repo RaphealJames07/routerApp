@@ -8,8 +8,11 @@ import Dashboard from "./pages/Dashboard";
 import Cart from "./pages/Cart";
 import HomeRoute from "./routes/HomeRoute";
 import Login from "./pages/auth/Login";
+import ShopOne from "./pages/ShopOne";
+import ShopTwo from "./pages/ShopTwo";
 import PrivateRoute from "./routes/PrivateRoute";
-import PrivateOutlet from "./routes/PrivateOutlet";
+import Database from "./pages/Database";
+import ProductDetail from "./pages/ProductDetail";
 
 const App = () => {
     const routes = createBrowserRouter([
@@ -28,6 +31,16 @@ const App = () => {
                 {
                     path: "/shop",
                     element: <Shop />,
+                    children: [
+                        {
+                            path: "shop-1",
+                            element: <ShopOne />,
+                        },
+                        {
+                            path: "shop-2",
+                            element: <ShopTwo />,
+                        },
+                    ],
                 },
                 {
                     path: "/collection/:product_name",
@@ -37,6 +50,10 @@ const App = () => {
                     path: "/about",
                     element: <About />,
                 },
+                {
+                    path: "/tour/:id",
+                    element: <ProductDetail />,
+                },
 
                 {
                     path: "/cart",
@@ -45,18 +62,18 @@ const App = () => {
             ],
         },
         {
-            path: "/",
-            element: (
-                <PrivateRoute>
-                    <PrivateOutlet />
-                </PrivateRoute>
-            ),
-            children: [
+            path: "/dashboard",
+            element: <PrivateRoute />,
+            children:[
                 {
-                    path: "/dashboard",
-                    element: <Dashboard />,
+                    path:'dashboard',
+                    element:<Dashboard/>
                 },
-            ],
+                {
+                    path:'database',
+                    element:<Database/>
+                }
+            ]
         },
         {
             path: "/login",

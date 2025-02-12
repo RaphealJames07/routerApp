@@ -1,9 +1,12 @@
-
+import {Outlet} from "react-router";
 
 const Shop = () => {
-  return (
-    <div>Shop</div>
-  )
-}
+    return (
+        <div>
+            Papa Shop
+            <Outlet />
+        </div>
+    );
+};
 
-export default Shop
+export default Shop;
